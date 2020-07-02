@@ -3,6 +3,8 @@ import 'package:flushbar/flushbar.dart';
 import 'package:global_notifications/src/seconnd_screen.dart';
 import 'package:global_notifications/src/services/notificaion_service.dart';
 
+import 'seconnd_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   static const routeName = 'homeScreen-route';
   @override
@@ -25,14 +27,14 @@ class HomeScreen extends StatelessWidget {
               ),
               onPressed: () {
                 Flushbar(
-                    // margin: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(8),
                     borderRadius: 8,
                     title: "Hey Ninja",
                     message:
                         "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
                     duration: Duration(seconds: 3),
-                    flushbarPosition: FlushbarPosition.TOP);
-                //..show(context);
+                    flushbarPosition: FlushbarPosition.BOTTOM)
+                  ..show(context);
               },
             ),
             SizedBox(
@@ -46,18 +48,11 @@ class HomeScreen extends StatelessWidget {
                 side: BorderSide(color: Colors.blueAccent),
               ),
               onPressed: () {
-                NotificationService.navigatorKey.currentState
-                    .pushNamed(NotificationService.NOTIFICATION_SUCESS);
-
-                /*    Flushbar(
-                    // margin: EdgeInsets.all(8),
-                    borderRadius: 8,
-                    title: "Hey Ninja",
-                    message:
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-                    duration: Duration(seconds: 3),
-                    flushbarPosition: FlushbarPosition.TOP);
-                //..show(context);*/
+                NotificationService.navigatorKey.currentState.pushNamed(
+                  NotificationService.NOTIFICATION_SUCESS,
+                  arguments: () =>
+                      Navigator.pushNamed(context, SecondScreen.routeName),
+                );
               },
             ),
             SizedBox(
